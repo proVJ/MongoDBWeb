@@ -1,0 +1,115 @@
+<div class="row" *ngIf="!showUser">
+  <div class="col-md-12">
+    <br>
+    <a class="btn btn-primary" (click)="AddNewUser()">Add New User</a>
+  </div>
+  <br>
+  <br>
+
+  <div class="row" style="text-align: right;">
+    <div class="col-md-12" >
+      <div class="form-group">
+        <label for="isActive">{{ isInActiveUserChecked == false ? "Show In Active" : "Show Active"}}</label>
+        <input type="checkbox" class="form-control" (change)="showInactive(isInActiveUserChecked)" >
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <!-- <th scope="col">User Type</th>
+          <th scope="col">Role</th> -->
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList; index as i;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <!-- <td>{{user.userType}}</td>
+          <td>{{user.role}}</td> -->
+          <td>
+            <!-- <a class="btn btn-outline-primary">View</a> | -->
+            <a class="btn btn-outline-primary" (click)="showEditUser(user._id)">Edit</a> |
+            <a class="btn btn-outline-primary" (click)="deleteUser(user._id)">Delete</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+
+<div class="row" *ngIf="showUser">
+  <div class="col-md-12">
+    <form [formGroup]="userForm" autocomplete="off">
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" formControlName="firstName">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-1">
+          <div class="form-group">
+            <label for="isActive">is Active</label>
+            <input type="checkbox" class="form-control" formControlName="isActive" placeholder="is Active">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="text-align: center;">
+
+        <button type="button" class="btn btn-primary" (click)="SaveUser(userForm)">Submit</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-primary" (click)="CancelForm()">Cancel</a>
+
+      </div>
+
+    </form>
+  </div>
+</div>
