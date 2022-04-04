@@ -7,10 +7,14 @@
   <br>
 
   <div class="row" style="text-align: right;">
-    <div class="col-md-12" >
+    <div class="col-md-12">
       <div class="form-group">
-        <label for="isActive">{{ isInActiveUserChecked == false ? "Show In Active" : "Show Active"}}</label>
-        <input type="checkbox" class="form-control" (change)="showInactive(isInActiveUserChecked)" >
+        <label for="isActive">
+          {{ isInActiveUserChecked == false ? "Show In Active Users" : "Show Active Users"}}
+        </label>
+        <input type="checkbox" 
+        name="isActive" class="form-control" 
+        (change)="showInactive(isInActiveUserChecked)">
       </div>
     </div>
   </div>
